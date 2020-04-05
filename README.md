@@ -27,4 +27,5 @@ or
 2. `http://localhost:3000/smart-home/validation/100`
 
 Note: To see the value of an actuator `http://localhost:3000/smart-home/heat-system/command`
+
 Note: To see all actuators `http://localhost:3000/smart-home/actuators`
