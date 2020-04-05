@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  nodered-feedback:
+    image: nodered-feedback
+    command: npm run dev
+    container_name: nodered-feedback
+    build: nodered-feedback
+    volumes:
+      - ./nodered-feedback:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 1880:1880
+
+  sensors-fake-server:
+    image: sensors-fake-server
+    command: npm run dev
+    container_name: sensors-fake-server
+    build: sensors-fake-server/server
+    volumes:
+      - ./sensors-fake-server/server:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    environment:
+      ENVIRONMENT: development
+    depends_on:
+      - mosquitto
+
+  mosquitto:
+    image: eclipse-mosquitto:1.6
+    container_name: mosquitto
+    ports:
+      - 1883:1883
+      - 9001:9001
