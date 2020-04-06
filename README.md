@@ -16,7 +16,7 @@ Note: Docker and Docker-compose are assumed that are already installed.
 1. Import flows from `flows` folder
  * `simple.json` - Simple flow where are injected random mensagens to handle an heat system
  * `mqtt.json` - Simple flow that subscribes and publishes topics to handle an heat system
-2. Deploy
+3. Deploy
 
 ## How to use simulator
 1. `http://localhost:3000/smart-home/load`
