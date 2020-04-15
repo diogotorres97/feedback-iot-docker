@@ -1,8 +1,13 @@
 const SERVER_URL = `${window.location.origin}/simulator`
 
+taskTutorialListeners();
 task1aListeners();
 task1bListeners();
 task2Listeners();
+
+function taskTutorialListeners() {
+    addListener('tutorial', 'tutorial', '');
+}
 
 function task1aListeners() {
     for (let i = 1; i <= 3; i++) {

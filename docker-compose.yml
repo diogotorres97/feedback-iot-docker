@@ -6,7 +6,6 @@ services:
     restart: on-failure
     container_name: nginx
     volumes:
-      - ./validation-web:/usr/share/nginx/html
       - ./configs/.htpasswd:/etc/nginx/.htpasswd
       - ./configs/nginx.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
