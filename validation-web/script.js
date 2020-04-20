@@ -1,34 +1,38 @@
 const SERVER_URL = `${window.location.origin}/simulator`
 
 taskTutorialListeners();
-task1aListeners();
-task1bListeners();
+task1Listeners();
 task2Listeners();
+problem2Listeners();
 
 function taskTutorialListeners() {
     addListener('tutorial', 'tutorial', '');
+    addListener('tutorial-test1', 'tutorial1', '', true);
 }
 
-function task1aListeners() {
-    for (let i = 1; i <= 3; i++) {
-        addListener('task1a-test', 'agriculture1', i);
-    }
-}
+function task1Listeners() {
+    addListener('problem1', 'agriculture', '');
 
-
-function task1bListeners() {
     for (let i = 1; i <= 2; i++) {
-        addListener('task1b-test', 'agriculture2', i);
+        addListener('task1-test', 'agriculture1', i, true);
     }
 }
 
 function task2Listeners() {
     for (let i = 1; i <= 2; i++) {
-        addListener('task2-test', 'smart-home1', i);
+        addListener('task2-test', 'agriculture2', i, true);
     }
 }
 
-function addListener(elementId, scenario, i) {
+function problem2Listeners() {
+    addListener('problem2', 'smart-home', '');
+
+    for (let i = 1; i <= 2; i++) {
+        addListener('problem2-test', 'smart-home1', i, true);
+    }
+}
+
+function addListener(elementId, scenario, i, validate) {
     let testDiv = document.getElementById(`${elementId}${i}`);
     let testButton = testDiv.querySelector('button');
 
@@ -44,16 +48,22 @@ function addListener(elementId, scenario, i) {
             return;
         }
 
-        const result = await fetchAsync(`${SERVER_URL}/${scenario}${i}/validate`);
-        if (await result.json()) {
-            testDiv.querySelector('span').innerHTML = "Passed!"
-            testDiv.querySelector('span').style.color = 'green';
-            testButton.style.backgroundColor = 'green';
+        if (validate) {
+            const result = await fetchAsync(`${SERVER_URL}/${scenario}${i}/validate`);
+            if (await result.json()) {
+                testDiv.querySelector('span').innerHTML = "Passed!"
+                testDiv.querySelector('span').style.color = 'green';
+                testButton.style.backgroundColor = 'green';
+            } else {
+                testDiv.querySelector('span').innerHTML = "Not Passed!"
+                testDiv.querySelector('span').style.color = 'red';
+                testButton.style.backgroundColor = 'red';
+            }
         } else {
-            testDiv.querySelector('span').innerHTML = "Not Passed!"
-            testDiv.querySelector('span').style.color = 'red';
-            testButton.style.backgroundColor = 'red';
+            const result = await fetchAsync(`${SERVER_URL}/${scenario}${i}/start`);
+            testDiv.querySelector('span').innerHTML = "";
         }
+
         disableButtons(false);
     });
 }
