@@ -1,4 +1,4 @@
-const SERVER_URL = `${window.location.origin}/simulator`
+const SERVER_URL = `${window.location.hostname}/simulator`
 
 taskTutorialListeners();
 task1Listeners();

@@ -2,4 +2,6 @@ nodered-feedback/
 sensors-fake-server/
 
 .idea
+validation-web/docs
+validation-web/flows
 stale_outputs_checked
