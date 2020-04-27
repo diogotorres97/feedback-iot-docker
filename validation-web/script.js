@@ -1,9 +1,10 @@
-const SERVER_URL = `${window.location.hostname}/simulator`
+const SERVER_URL = `${window.location.origin}/simulator`
 
 taskTutorialListeners();
 task1Listeners();
 task2Listeners();
 problem2Listeners();
+setTaskListeners();
 
 function taskTutorialListeners() {
     addListener('tutorial', 'tutorial', '');
@@ -30,6 +31,20 @@ function problem2Listeners() {
     for (let i = 1; i <= 2; i++) {
         addListener('problem2-test', 'smart-home1', i, true);
     }
+}
+
+function setTaskListeners() {
+    setListener('task1');
+    setListener('task2');
+    setListener('task3');
+}
+
+function setListener(taskId) {
+    let setButton = document.getElementById(`${taskId}`);
+
+    setButton.addEventListener('click', async (event) => {
+        await fetchAsync(`${SERVER_URL}/task/${taskId}`);
+    });
 }
 
 function addListener(elementId, scenario, i, validate) {
