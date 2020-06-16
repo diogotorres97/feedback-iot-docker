@@ -1,24 +1,24 @@
 version: "3"
 
 services:
-  nodered-feedback:
-    image: nodered-feedback
+  nodered-cauldron:
+    image: nodered-cauldron
     command: npm run dev
-    container_name: nodered-feedback
-    build: nodered-feedback
+    container_name: nodered-cauldron
+    build: nodered-cauldron
     volumes:
-      - ./nodered-feedback:/usr/src/app
+      - ./nodered-cauldron:/usr/src/app
       - /usr/src/app/node_modules
     ports:
       - 1880:1880
 
-  sensors-fake-server:
-    image: sensors-fake-server
+  devices-iot-simulator:
+    image: devices-iot-simulator
     command: npm run dev
-    container_name: sensors-fake-server
-    build: sensors-fake-server/server
+    container_name: devices-iot-simulator
+    build: devices-iot-simulator/server
     volumes:
-      - ./sensors-fake-server/server:/usr/src/app
+      - ./devices-iot-simulator/server:/usr/src/app
       - /usr/src/app/node_modules
     ports:
       - 3000:3000
