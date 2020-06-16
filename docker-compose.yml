@@ -27,24 +27,24 @@ services:
     container_name: nodered
     restart: on-failure
 
-  nodered-feedback:
-    image: nodered-feedback
+  nodered-cauldron:
+    image: nodered-cauldron
     restart: on-failure
     command: npm run dev
-    container_name: nodered-feedback
-    build: nodered-feedback
+    container_name: nodered-cauldron
+    build: nodered-cauldron
     volumes:
-      - ./nodered-feedback:/usr/src/app
+      - ./nodered-cauldron:/usr/src/app
       - /usr/src/app/node_modules
 
-  sensors-fake-server:
-    image: sensors-fake-server
+  devices-iot-simulator:
+    image: devices-iot-simulator
     restart: on-failure
     command: npm run dev
-    container_name: sensors-fake-server
-    build: sensors-fake-server/server
+    container_name: devices-iot-simulator
+    build: devices-iot-simulator/server
     volumes:
-      - ./sensors-fake-server/server:/usr/src/app
+      - ./devices-iot-simulator/server:/usr/src/app
       - /usr/src/app/node_modules
     environment:
       ENVIRONMENT: development
