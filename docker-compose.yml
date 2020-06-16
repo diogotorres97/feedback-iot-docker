@@ -12,7 +12,7 @@ services:
       - 80:80
     depends_on:
       - nodered
-      - nodered-feedback
+      - nodered-cauldron
       - validation-web
 
   validation-web:
