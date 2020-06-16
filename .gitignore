@@ -1,5 +1,5 @@
-nodered-feedback/
-sensors-fake-server/
+nodered-cauldron/
+devices-iot-simulator/
 
 .idea
 stale_outputs_checked
